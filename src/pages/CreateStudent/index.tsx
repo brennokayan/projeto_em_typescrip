@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
+import {Box, Button, TextField, } from '@mui/material'
+
 import { CreateStudent } from "../../shared/services/api";
+import  './styles.css';
+
+
+
+
 function Create_Student(){
     const [nome, set_nome] = useState<string>("")
     const [email, set_email] = useState<string>("")
@@ -15,21 +22,27 @@ function Create_Student(){
         .then(res => console.log(res.data));
     }
 
+
     return(
         <>
-            <form>
-                a
-                <label htmlFor="nome">Nome: </label>
-                <input type="text" onChange={(e) => set_nome(e.target.value)} placeholder="Digite seu nome" />
-                <br />
-                <label htmlFor="email">Email: </label>
-                <input pattern="email" type="email" onChange={(e) => set_email(e.target.value)} placeholder="Digite seu Email"/>
-                <br />
-                <label htmlFor="idade">idade: </label>
-                <input type="number" onChange={(e) => set_idade(e.target.valueAsNumber)} placeholder="Digite sua Idade"/>
-                <br />
-                <input type="button" value="Realizar Cadastro" onClick={NewStudent}/>
-            </form>
+            <Box bgcolor="#e7e6e3" width="100vw" height="100vh" display="flex" alignItems="center" justifyContent="center">
+               <Box>
+                    <form>
+                        <TextField id ="nome" label="Nome" variant="outlined" onChange={(e) => set_nome(e.target.value)} color="secondary"/>
+                        <br />
+                        <br />
+                        <TextField id="email" label="Email" variant="outlined" onChange={(e) => set_email(e.target.value)} color="secondary" />
+                        <br />
+                        <br />
+                        <TextField id="idade" type="number" label="Idade" color="secondary" onChange={(e) => set_idade(e.target.valueAsNumber)} />
+                        <br />
+                        <br />
+                        <Box display="flex" alignItems="center" justifyContent="center">
+                            <Button variant="contained" color="primary" onClick={NewStudent} disabled={!nome || !email || !idade}>Realizar Cadastro</Button>
+                        </Box>
+                    </form>
+               </Box>
+            </Box>
         </>
     )
 }

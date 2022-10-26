@@ -11,3 +11,6 @@ export async function CreateStudent(data: any) {
     const res = await api.post('/novoaluno', data)
     return res
 }
+export async function DeleteStudent(){
+    
+}
